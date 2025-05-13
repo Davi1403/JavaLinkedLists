@@ -1,3 +1,5 @@
+import org.w3c.dom.Node;
+
 public class ListDC {
     private NodeDC head;
 
@@ -53,5 +55,55 @@ public class ListDC {
         System.out.println(" ]");
     }
 
+    public int length(){
+        NodeDC aux = head.getProx();
+        int i = 0;
+        while (aux != null){
+            i++;
+            aux = aux.getProx();
+        }
+        return i;
+    }
 
+    public void removeIndex(int index){
+        NodeDC aux = head.getProx();
+        int j = 0;
+
+        if (length() == 1){
+            head.setProx(null);
+            head.setAnt(null);
+        }else if (index > length()-1 || index < 0){
+            System.out.println("Index out of range");
+        }else if (index == 0){
+            head.setProx(head.getProx().getProx());
+            head.getProx().setAnt(null);
+        }else if (index == length()-1){
+            head.setAnt(head.getAnt().getAnt());
+            head.getAnt().setProx(null);
+        }else {
+            while (aux != null) {
+                if (index == j){
+                    aux.getAnt().setProx(aux.getProx());
+                    aux.getProx().setAnt(aux.getAnt());
+                    break;
+                }
+                j++;
+                aux = aux.getProx() ;
+            }
+        }
+    }
+
+
+    public void removeCaracter (char caracter){
+        NodeDC aux = head.getProx();
+        int j = 0;
+        while (aux!=null){
+            if (aux.getX() == caracter){
+                    removeIndex(j);
+                    j--;
+                }
+                j++;
+                aux = aux.getProx();
+            }
+        }
 }

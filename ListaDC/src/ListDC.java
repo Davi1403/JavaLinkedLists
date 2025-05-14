@@ -1,4 +1,5 @@
 import org.w3c.dom.Node;
+import org.w3c.dom.Text;
 
 public class ListDC {
     private NodeDC head;
@@ -36,7 +37,7 @@ public class ListDC {
         System.out.print("[ ");
         while (aux != null){
             System.out.print(" ");
-            System.out.print(((char) aux.getX()));
+            System.out.print(aux.getX());
             System.out.print(" ");
             aux = aux.getProx();
         }
@@ -106,4 +107,37 @@ public class ListDC {
                 aux = aux.getProx();
             }
         }
+
+    public ListDC clone(){
+        NodeDC aux = head.getProx();
+        ListDC copy =  new ListDC();
+
+        while (aux != null){
+            copy.addEnd(aux.getX());
+            aux = aux.getProx();
+        }
+        return copy;
+    }
+
+    public void removeUpperLowCase(String caracter){
+        caracter = caracter.toLowerCase();
+        removeCaracter(caracter.charAt(0));
+    }
+
+    public String charToString(){
+        NodeDC aux = head.getProx();
+        String text = "";
+
+        while (aux != null){
+            text += String.valueOf(aux.getX());
+            aux = aux.getProx();
+        }
+        return text;
+    }
+
+    public void stringToChar(String text){
+        for (int i = 0; i < text.length() ; i++){
+            addEnd(text.charAt(i));
+        }
+    }
 }

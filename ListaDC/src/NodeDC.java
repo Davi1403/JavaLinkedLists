@@ -11,7 +11,7 @@ public class NodeDC {
         x = caracter;
     }
 
-    public int getX(){
+    public char getX(){
         return x;
     }
 

@@ -5,6 +5,14 @@ public class Main {
         // c-) AddEnd
         l.addEnd('v');
         l.addEnd('i');
+        l.addEnd('i');
+        l.addEnd('i');
+        l.addEnd('i');
+        l.addEnd('a');
+        l.addEnd('a');
+        l.addEnd('w');
+        l.addEnd('w');
+        l.addEnd('w');
 
 
         l.print();
@@ -27,13 +35,7 @@ public class Main {
 
         // REMOVE BY THE INDEX
         l.print();
-        l.removeIndex(0);
-        l.print();
-        l.removeIndex(0);
-        l.print();
-        l.removeIndex(0);
-        l.print();
-        l.removeIndex(0);
+        l.removeIndex(8);
         l.print();
 
 
@@ -41,12 +43,36 @@ public class Main {
 
         // REMOVE BY CARACTER
 
-        //l.print();
-        //l.removeCaracter('D');
-        //l.removeCaracter('a');
-        //l.removeCaracter('v');
-        //l.removeCaracter('i');
+        l.print();
+        l.removeCaracter('i');
+        l.print();
 
-        //l.print();
+        System.out.println("________________________________________");
+
+        //e-) CLONE
+
+        l.print();
+        ListDC clone = l.clone();
+        l.removeCaracter('w');
+        l.print();
+        System.out.print("CLONE = ");
+        clone.print();
+
+        System.out.println("________________________________________");
+
+        //f-) Remove Upper and Low case
+
+        l.removeUpperLowCase("A");
+        l.print();
+
+        System.out.println("________________________________________");
+
+        //i- Convert list to a String
+        System.out.println(l.charToString());
+
+        //j- Convert a string to list
+        l.stringToChar("VAI CORINTHIANS");
+        l.print();
+
     }
 }

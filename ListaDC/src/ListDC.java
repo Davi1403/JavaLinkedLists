@@ -13,10 +13,14 @@ public class ListDC {
         if (head.getProx() == null){
             head.setProx(aux);
             head.setAnt(aux);
+            aux.setAnt(head);
+            aux.setProx(head);
         }else{
             head.getAnt().setProx(aux);
             aux.setAnt(head.getAnt());
             head.setAnt(aux);
+            aux.setProx(head);
+
         }
     }
 
@@ -35,7 +39,7 @@ public class ListDC {
     public void print(){
         NodeDC aux = head.getProx();
         System.out.print("[ ");
-        while (aux != null){
+        while (aux != head){
             System.out.print(" ");
             System.out.print(aux.getX());
             System.out.print(" ");
@@ -122,6 +126,32 @@ public class ListDC {
     public void removeUpperLowCase(String caracter){
         caracter = caracter.toLowerCase();
         removeCaracter(caracter.charAt(0));
+    }
+
+    public void invertPointer(){
+        NodeDC aux = head.getProx();
+
+        while (aux != null){
+            NodeDC aux2 = aux.getProx();
+            NodeDC aux3= aux.getAnt();
+            if (aux2 == null){
+                System.out.println("Aux2 null");
+            }else {
+                System.out.println("AUX2 = " + aux2.getX());
+
+            }
+
+            if (aux3 == null){
+                System.out.println("Aux3 null");
+            }else {
+                System.out.println("AUX3 = " + aux3.getX());
+            }
+            aux.setAnt(aux2);
+            aux.setProx(aux3);
+
+            aux = aux.getAnt();
+            System.out.println("AUX = " + aux.getX());
+        }
     }
 
     public String charToString(){

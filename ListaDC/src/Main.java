@@ -16,6 +16,7 @@ public class Main {
 
 
         l.print();
+        /*
         l.printBackward();
 
         System.out.println("________________________________________");
@@ -41,15 +42,14 @@ public class Main {
 
         System.out.println("________________________________________");
 
-        // REMOVE BY CARACTER
-
+        // d-) Remove by caracter
         l.print();
         l.removeCaracter('i');
         l.print();
 
         System.out.println("________________________________________");
 
-        //e-) CLONE
+        //e-) Clone list
 
         l.print();
         ListDC clone = l.clone();
@@ -67,12 +67,25 @@ public class Main {
 
         System.out.println("________________________________________");
 
+        //g- ) InvertPointers
+
+        l.addEnd('l');
+        l.addEnd('u');
+        l.print();
+        l.invertPointer();
+        System.out.printf("INVERT POINTERS = ");
+        l.printBackward();
+
+        System.out.println("________________________________________");
+
         //i- Convert list to a String
         System.out.println(l.charToString());
+
+        System.out.println("________________________________________");
 
         //j- Convert a string to list
         l.stringToChar("VAI CORINTHIANS");
         l.print();
-
+*/
     }
 }

@@ -1,48 +1,50 @@
-import org.w3c.dom.Node;
-import org.w3c.dom.Text;
-
 public class ListDC {
     private NodeDC head;
 
     public ListDC(){
-        head = new NodeDC('c');
+        head = new NodeDC('~');
+    }
+
+    public void addStart(char caracter){
+        NodeDC aux = new NodeDC(caracter);
+
+        if (head.getProx() == null){
+            head.setProx(aux);
+            head.setAnt(aux);
+            aux.setProx(head);
+            aux.setAnt(head);
+        }else{
+            head.getProx().setAnt(aux);
+            aux.setProx(head.getProx());
+            head.setProx(aux);
+            aux.setAnt(head);
+        }
     }
 
     public void addEnd(char caracter){
         NodeDC aux = new NodeDC(caracter);
+
         if (head.getProx() == null){
             head.setProx(aux);
             head.setAnt(aux);
-            aux.setAnt(head);
             aux.setProx(head);
+            aux.setAnt(head);
         }else{
             head.getAnt().setProx(aux);
             aux.setAnt(head.getAnt());
             head.setAnt(aux);
             aux.setProx(head);
-
         }
     }
-
-    public void addStart(char caracter){
-        NodeDC aux = new NodeDC(caracter);
-        if (head.getProx() == null){
-            head.setProx(aux);
-            head.setAnt(aux);
-        }else{
-            head.getProx().setAnt(aux);
-            aux.setProx(head.getProx());
-            head.setProx(aux);
-        }
-    }
-
     public void print(){
         NodeDC aux = head.getProx();
         System.out.print("[ ");
         while (aux != head){
-            System.out.print(" ");
+            if (aux == null){
+                System.out.print("LISTA VAZIA");
+                break;
+            }
             System.out.print(aux.getX());
-            System.out.print(" ");
             aux = aux.getProx();
         }
         System.out.println(" ]");
@@ -51,123 +53,125 @@ public class ListDC {
     public void printBackward(){
         NodeDC aux = head.getAnt();
         System.out.print("[ ");
-        while (aux != null){
-            System.out.print(" ");
-            System.out.print(((char) aux.getX()));
-            System.out.print(" ");
+        while (head != aux){
+            if (aux == null){
+                System.out.print("LISTA VAZIA");
+                break;
+            }
+            System.out.print(aux.getX());
             aux = aux.getAnt();
         }
         System.out.println(" ]");
     }
 
-    public int length(){
-        NodeDC aux = head.getProx();
-        int i = 0;
-        while (aux != null){
-            i++;
-            aux = aux.getProx();
-        }
-        return i;
-    }
-
-    public void removeIndex(int index){
-        NodeDC aux = head.getProx();
-        int j = 0;
-
-        if (length() == 1){
+    public void remove(NodeDC aux){
+        if (head.getProx() == head.getAnt()){
             head.setProx(null);
             head.setAnt(null);
-        }else if (index > length()-1 || index < 0){
-            System.out.println("Index out of range");
-        }else if (index == 0){
-            head.setProx(head.getProx().getProx());
-            head.getProx().setAnt(null);
-        }else if (index == length()-1){
-            head.setAnt(head.getAnt().getAnt());
-            head.getAnt().setProx(null);
+        }else if (aux == head.getProx()){
+            aux.getProx().setAnt(head);
+            head.setProx(aux.getProx());
+        }else if (aux == head.getAnt()){
+            aux.getAnt().setProx(head);
+            head.setAnt(aux.getAnt());
         }else {
-            while (aux != null) {
-                if (index == j){
-                    aux.getAnt().setProx(aux.getProx());
-                    aux.getProx().setAnt(aux.getAnt());
-                    break;
-                }
-                j++;
-                aux = aux.getProx() ;
-            }
+            aux.getAnt().setProx(aux.getProx());
+            aux.getProx().setAnt(aux.getAnt());
         }
     }
 
-
-    public void removeCaracter (char caracter){
+    public void removeValue(char caracter){
         NodeDC aux = head.getProx();
-        int j = 0;
-        while (aux!=null){
+        int count = 0;
+        while (aux != head){
             if (aux.getX() == caracter){
-                    removeIndex(j);
-                    j--;
-                }
-                j++;
-                aux = aux.getProx();
+                remove(aux);
+                count++;
             }
+            aux = aux.getProx();
         }
+        if (count == 0){
+            System.out.println("CARACTER NÃO ENCONTRADO");
+        }else {
+            System.out.println("FOREM REMOVIDOS " + count + "NÓS COM ESSE VALOR");
+        }
+    }
 
-    public ListDC clone(){
+    public ListDC copy(){
+        ListDC copy = new ListDC();
         NodeDC aux = head.getProx();
-        ListDC copy =  new ListDC();
-
-        while (aux != null){
+        while (aux != head){
             copy.addEnd(aux.getX());
             aux = aux.getProx();
         }
         return copy;
     }
 
-    public void removeUpperLowCase(String caracter){
-        caracter = caracter.toLowerCase();
-        removeCaracter(caracter.charAt(0));
-    }
-
-    public void invertPointer(){
+    public void removeUpperLowCase(char caracter){
         NodeDC aux = head.getProx();
-
-        while (aux != null){
-            NodeDC aux2 = aux.getProx();
-            NodeDC aux3= aux.getAnt();
-            if (aux2 == null){
-                System.out.println("Aux2 null");
-            }else {
-                System.out.println("AUX2 = " + aux2.getX());
-
+        char upper = Character.toUpperCase(caracter);
+        char low = Character.toLowerCase(caracter);
+        int count = 0;
+        while (aux != head){
+            if (aux.getX() == low || aux.getX() == upper){
+                remove(aux);
+                count++;
             }
-
-            if (aux3 == null){
-                System.out.println("Aux3 null");
-            }else {
-                System.out.println("AUX3 = " + aux3.getX());
-            }
-            aux.setAnt(aux2);
-            aux.setProx(aux3);
-
-            aux = aux.getAnt();
-            System.out.println("AUX = " + aux.getX());
-        }
-    }
-
-    public String charToString(){
-        NodeDC aux = head.getProx();
-        String text = "";
-
-        while (aux != null){
-            text += String.valueOf(aux.getX());
             aux = aux.getProx();
         }
-        return text;
+        if (count == 0){
+            System.out.println("CARACTER NÃO ENCONTRADO");
+        }else {
+            System.out.println("FOREM REMOVIDOS " + count + "NÓS COM ESSE VALOR");
+        }
     }
 
-    public void stringToChar(String text){
-        for (int i = 0; i < text.length() ; i++){
-            addEnd(text.charAt(i));
+    public void invertPointers(){ // CONFERIR SE PODE MUDAR OS PONTEIROS QUE SAIM DO HEAD, SE NÃO, TEM QUE ADAPTAR O PRINTBACKWARD (aux = aux.getProx())
+        NodeDC aux = head.getAnt();
+
+        while (aux != head){
+            if (aux == head.getAnt()){
+                head.setProx(aux); // !!!
+                aux.setProx(aux.getAnt());
+                aux.setAnt(head);
+            }else if (aux == head.getProx()){
+                aux.setAnt(aux); // !!!
+                aux.setAnt(aux.getProx());
+                aux.setProx(head);
+            }else{
+                NodeDC ant = aux.getAnt();
+                aux.setAnt(aux.getProx());
+                aux.setProx(ant);
+            }
+            aux = aux.getProx();
+        }
+    }
+
+    public char middle(){
+        NodeDC aux = head.getProx();
+        NodeDC aux2 = head.getProx();
+
+        while (aux2 != head && aux2 != head.getAnt()){
+            aux = aux.getProx();
+            aux2 = aux2.getProx().getProx();
+        }
+        return aux.getX();
+    }
+
+    public String returnPhrase(){
+        StringBuilder pharase = new StringBuilder();
+        NodeDC aux = head.getProx();
+
+        while (aux != head){
+            pharase.append(aux.getX());
+            aux = aux.getProx();
+        }
+        return pharase.toString();
+    }
+
+    public void stringToList(String phrase){
+        for (int i = 0 ; i < phrase.length() ; i++){
+            addEnd(phrase.charAt(i));
         }
     }
 }

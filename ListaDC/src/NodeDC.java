@@ -1,4 +1,7 @@
+import org.w3c.dom.Node;
+
 public class NodeDC {
+
     private char x;
     private NodeDC prox, ant;
 
@@ -11,23 +14,25 @@ public class NodeDC {
         x = caracter;
     }
 
-    public char getX(){
+    public char getX() {
         return x;
     }
 
-    public void setAnt(NodeDC n){
-        ant = n;
+    public void setAnt(NodeDC node){
+        ant = node;
     }
 
     public NodeDC getAnt(){
         return ant;
     }
 
-    public void setProx(NodeDC n){
-        prox = n;
+    public void setProx(NodeDC node){
+        prox = node;
     }
 
     public NodeDC getProx(){
         return prox;
     }
 }
+
+

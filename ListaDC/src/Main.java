@@ -1,91 +1,83 @@
 public class Main {
-    public static void main (String[] args){
+    public static void main(String[] args) {
         ListDC l = new ListDC();
 
-        // c-) AddEnd
-        l.addEnd('v');
-        l.addEnd('i');
-        l.addEnd('i');
-        l.addEnd('i');
-        l.addEnd('i');
+
+        // C-)
+        l.addEnd('O');
+        l.addEnd('R');
+        l.addEnd('I');
+        l.addEnd('N');
+        l.addEnd('T');
+        l.addEnd('H');
+        l.addEnd('I');
         l.addEnd('a');
-        l.addEnd('a');
-        l.addEnd('w');
-        l.addEnd('w');
-        l.addEnd('w');
+        l.addEnd('N');
+        l.addEnd('S');
 
-
-        l.print();
-        /*
-        l.printBackward();
-
-        System.out.println("________________________________________");
-
-        // b-) AddStart
+        // B-)
+        l.addStart('C');
+        l.addStart(' ');
+        l.addStart('I');
+        l.addStart('A');
         l.addStart('a');
-        l.addStart('D');
+        l.addStart('A');
+        l.addStart('V');
 
         l.print();
         l.printBackward();
 
-        System.out.println("________________________________________");
 
-        System.out.println("LENGTH = " + l.length());
+        System.out.println("\n____________________________________________________________________________________________\n");
 
-        System.out.println("________________________________________");
-
-        // REMOVE BY THE INDEX
+        // D-)
+        l.removeValue('O');
         l.print();
-        l.removeIndex(8);
-        l.print();
-
-
-        System.out.println("________________________________________");
-
-        // d-) Remove by caracter
-        l.print();
-        l.removeCaracter('i');
-        l.print();
-
-        System.out.println("________________________________________");
-
-        //e-) Clone list
-
-        l.print();
-        ListDC clone = l.clone();
-        l.removeCaracter('w');
-        l.print();
-        System.out.print("CLONE = ");
-        clone.print();
-
-        System.out.println("________________________________________");
-
-        //f-) Remove Upper and Low case
-
-        l.removeUpperLowCase("A");
-        l.print();
-
-        System.out.println("________________________________________");
-
-        //g- ) InvertPointers
-
-        l.addEnd('l');
-        l.addEnd('u');
-        l.print();
-        l.invertPointer();
-        System.out.printf("INVERT POINTERS = ");
         l.printBackward();
 
-        System.out.println("________________________________________");
+        System.out.println("\n____________________________________________________________________________________________\n");
 
-        //i- Convert list to a String
-        System.out.println(l.charToString());
-
-        System.out.println("________________________________________");
-
-        //j- Convert a string to list
-        l.stringToChar("VAI CORINTHIANS");
+        // E-)
+        ListDC copy = l.copy();
+        copy.removeValue('A');
+        System.out.print("ORIGINAL");
         l.print();
-*/
+        System.out.print("CÓPIA ");
+        copy.print();
+
+        System.out.println("\n____________________________________________________________________________________________\n");
+
+        // F-)
+
+        copy.removeUpperLowCase('A');
+        copy.print();
+
+        System.out.println("\n____________________________________________________________________________________________\n");
+
+        // G-)
+
+        copy.print();
+        copy.invertPointers();
+        copy.print();
+
+        System.out.println("\n____________________________________________________________________________________________\n");
+
+        // H-)
+        ListDC l2 = new ListDC();
+        l2.print();
+        System.out.println("Middle = " + l2.middle());
+
+        System.out.println("\n____________________________________________________________________________________________\n");
+
+        // I-)
+        System.out.println(l.returnPhrase());
+
+        System.out.println("\n____________________________________________________________________________________________\n");
+
+        // J-)
+        l.stringToList(" isso e uma string que vai para a lista");
+        l.print();
+
+        System.out.println("\n____________________________________________________________________________________________\n");
     }
 }

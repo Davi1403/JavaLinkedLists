@@ -75,7 +75,11 @@ public class Main {
 
         //12 - inserePos
         l.print();
-        l.inserePos(100,200);
+        l.inserePos(1,200);
+        l.print();
+        l.inserePos(5,200);
+        l.print();
+        l.inserePos(0,200);
         l.print();
         l.printBackward();
     }

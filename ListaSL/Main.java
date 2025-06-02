@@ -2,45 +2,47 @@ public class Main {
     public static void main (String[] args){
         Lista l = new Lista();
 
-        l.add(1);
-        l.add(-2);
-        l.add(3);
-        l.add(30);
-        l.add(50);
+        l.addEnd(2);
+        l.addEnd(4);
+        l.addEnd(6);
 
         l.print();
-        System.out.println("---------------------------------------------------------------------");
+
+        System.out.println("\n---------------------------------------------------------------------\n");
 
 
         // 01 - Length
         System.out.println("Length = " + l.length());
-        System.out.println("---------------------------------------------------------------------");
+
+        System.out.println("\n---------------------------------------------------------------------\n");
 
         // 02 - Sum
         System.out.println("Sum = " + l.sum());
-        System.out.println("---------------------------------------------------------------------");
 
+        System.out.println("\n---------------------------------------------------------------------\n");
 
         // 03 - Max
         System.out.println("Max = " + l.max());
-        System.out.println("---------------------------------------------------------------------");
 
+        System.out.println("\n---------------------------------------------------------------------\n");
 
         // 04 - Min
         System.out.println("Min = " + l.min());
-        System.out.println("---------------------------------------------------------------------");
 
+        System.out.println("\n---------------------------------------------------------------------\n");
 
         // 05 - DoubleX
         l.doubleX();
         l.print();
-        System.out.println("---------------------------------------------------------------------");
+
+        System.out.println("\n---------------------------------------------------------------------\n");
 
 
         // 06 - AddInicio
         l.addInicio(20);
         l.print();
-        System.out.println("---------------------------------------------------------------------");
+
+        System.out.println("\n---------------------------------------------------------------------\n");
 
 
         // 07 - somaPosImpares
@@ -60,18 +62,21 @@ public class Main {
 
 
         // 10 - Remove
-        l.remove(0);
+        l.print();
+        l.removeByIndex(4);
         l.print();
         System.out.println("---------------------------------------------------------------------");
+
 
         //11 - removeNode
         l.print();
-        System.out.println(l.removedNode(4));
+        System.out.println(l.returnRemoved(0));
         l.print();
         System.out.println("---------------------------------------------------------------------");
 
+
         //12 - inserePos
-        l.inserePos(2,222);
+        l.inserePos(4,222);
         l.print();
 
     }

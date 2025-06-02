@@ -187,7 +187,7 @@ public class ListDLL {
         }
         return -9999999;
     }
-
+    /*
     public void inserePos(int pos, int valor){
         if (pos > length()){
             addFim(valor);
@@ -208,6 +208,30 @@ public class ListDLL {
                 }
                 aux = aux.getProx();
                 j++;
+            }
+        }
+    }
+    */
+
+    public void inserePos(int pos, int valor){
+        if (pos == 0){
+            addInicio(valor);
+        }else if (pos >= length()){
+            addFim(valor);
+        }else{
+            NodeDLL aux = inicio;
+            NodeDLL no = new NodeDLL(valor);
+            int j = 0;
+
+            while (aux != null){
+                if (j == pos){
+                    aux.getAnt().setProx(no);
+                    no.setAnt(aux.getAnt());
+                    aux.setAnt(no);
+                    no.setProx(aux);
+                }
+                j++;
+                aux = aux.getProx();
             }
         }
     }
